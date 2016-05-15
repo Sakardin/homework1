@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Homework1.iml" filepath="$PROJECT_DIR$/.idea/modules/Homework1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Homework1_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Homework1_main.iml" group="Homework1" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Homework1_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Homework1_test.iml" group="Homework1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/homework1.iml" filepath="$PROJECT_DIR$/.idea/modules/homework1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/homework1_main.iml" filepath="$PROJECT_DIR$/.idea/modules/homework1_main.iml" group="homework1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/homework1_test.iml" filepath="$PROJECT_DIR$/.idea/modules/homework1_test.iml" group="homework1" />
     </modules>
   </component>
 </project>

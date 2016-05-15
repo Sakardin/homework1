@@ -19,7 +19,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="homework1_main" target="1.8" />
       <module name="Homework1_main" target="1.8" />
+      <module name="homework1_test" target="1.8" />
       <module name="Homework1_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
