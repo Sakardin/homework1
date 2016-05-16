@@ -1,4 +1,4 @@
-package my.hw2.addressbook.ru;
+package my.hw2.addressbook.ru.Model;
 
 public class GroupData {
     private final String name;
