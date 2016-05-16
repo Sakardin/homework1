@@ -39,4 +39,16 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
 
     }
+
+    public void selectContact() {
+        click(By.cssSelector("tbody tr.odd td.center:nth-child(1)"));
+    }
+
+    public void allertAccept() {
+        wd.switchTo().alert().accept();
+    }
+
+    public void deleteSelectedContact() {
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    }
 }
