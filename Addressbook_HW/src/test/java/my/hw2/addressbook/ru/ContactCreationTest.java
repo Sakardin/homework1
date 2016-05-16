@@ -34,7 +34,7 @@ public class ContactCreationTest {
     public void testContactCreation() {
 
         initContactCreation();
-        fillContactForm();
+        fillContactForm(new ContactData("testname", "testmiddlename", "testlastname", "testnickname", "testitle", "testcompany", "testaddress", "testhome", "testmobile", "testwork", "testfax"));
         submitContactForm();
     }
 
@@ -42,84 +42,40 @@ public class ContactCreationTest {
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
-    private void fillContactForm() {
-        fillFirstName("testname");
-        fillMiddleName("testmiddlename");
-        fillLastName("testlastname");
-        fillNickName("testnickname");
-        fillTitle("testitle");
-        fillCompany("testcompany");
-        fillAddress("testaddress");
-        fillHomePhone("testhome");
-        fillMobilePhone("testmobile");
-        fillWorkPhone("testwork");
-        fillFax("testfax");
-    }
-
-    private void fillFax(String faxNumber) {
-        wd.findElement(By.name("fax")).click();
-        wd.findElement(By.name("fax")).clear();
-        wd.findElement(By.name("fax")).sendKeys(faxNumber);
-    }
-
-    private void fillWorkPhone(String workPhone) {
-        wd.findElement(By.name("work")).click();
-        wd.findElement(By.name("work")).clear();
-        wd.findElement(By.name("work")).sendKeys(workPhone);
-    }
-
-    private void fillMobilePhone(String mobilePhone) {
-        wd.findElement(By.name("mobile")).click();
-        wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(mobilePhone);
-    }
-
-    private void fillHomePhone(String homePhone) {
-        wd.findElement(By.name("home")).click();
-        wd.findElement(By.name("home")).clear();
-        wd.findElement(By.name("home")).sendKeys(homePhone);
-    }
-
-    private void fillAddress(String address) {
-        wd.findElement(By.name("address")).click();
-        wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(address);
-    }
-
-    private void fillCompany(String company) {
-        wd.findElement(By.name("company")).click();
-        wd.findElement(By.name("company")).clear();
-        wd.findElement(By.name("company")).sendKeys(company);
-    }
-
-    private void fillTitle(String title) {
-        wd.findElement(By.name("title")).click();
-        wd.findElement(By.name("title")).clear();
-        wd.findElement(By.name("title")).sendKeys(title);
-    }
-
-    private void fillNickName(String nickName) {
-        wd.findElement(By.name("nickname")).click();
-        wd.findElement(By.name("nickname")).clear();
-        wd.findElement(By.name("nickname")).sendKeys(nickName);
-    }
-
-    private void fillLastName(String lastName) {
-        wd.findElement(By.name("lastname")).click();
-        wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(lastName);
-    }
-
-    private void fillMiddleName(String middleName) {
-        wd.findElement(By.name("middlename")).click();
-        wd.findElement(By.name("middlename")).clear();
-        wd.findElement(By.name("middlename")).sendKeys(middleName);
-    }
-
-    private void fillFirstName(String firstName) {
+    private void fillContactForm(ContactData contactData) {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(firstName);
+        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
+        wd.findElement(By.name("middlename")).click();
+        wd.findElement(By.name("middlename")).clear();
+        wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddleName());
+        wd.findElement(By.name("lastname")).click();
+        wd.findElement(By.name("lastname")).clear();
+        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
+        wd.findElement(By.name("nickname")).click();
+        wd.findElement(By.name("nickname")).clear();
+        wd.findElement(By.name("nickname")).sendKeys(contactData.getNickName());
+        wd.findElement(By.name("title")).click();
+        wd.findElement(By.name("title")).clear();
+        wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
+        wd.findElement(By.name("company")).click();
+        wd.findElement(By.name("company")).clear();
+        wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
+        wd.findElement(By.name("address")).click();
+        wd.findElement(By.name("address")).clear();
+        wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
+        wd.findElement(By.name("home")).click();
+        wd.findElement(By.name("home")).clear();
+        wd.findElement(By.name("home")).sendKeys(contactData.getHomePhone());
+        wd.findElement(By.name("mobile")).click();
+        wd.findElement(By.name("mobile")).clear();
+        wd.findElement(By.name("mobile")).sendKeys(contactData.getMobilePhone());
+        wd.findElement(By.name("work")).click();
+        wd.findElement(By.name("work")).clear();
+        wd.findElement(By.name("work")).sendKeys(contactData.getWorkPhone());
+        wd.findElement(By.name("fax")).click();
+        wd.findElement(By.name("fax")).clear();
+        wd.findElement(By.name("fax")).sendKeys(contactData.getFax());
     }
 
     private void initContactCreation() {
