@@ -3,6 +3,7 @@ package my.hw2.addressbook.ru.appmanager;
 import my.hw2.addressbook.ru.Model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.ClickAction;
 
 /**
  * Created by Dmitry on 16.05.2016.
@@ -50,5 +51,17 @@ public class ContactHelper extends HelperBase {
 
     public void deleteSelectedContact() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    }
+
+    public void editContact() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));
+    }
+
+    public void updateContactForm() {
+        click(By.name("update"));
+    }
+
+    public void retuntToMainPage() {
+        click(By.xpath("//div/div[4]/div/i/a"));
     }
 }
