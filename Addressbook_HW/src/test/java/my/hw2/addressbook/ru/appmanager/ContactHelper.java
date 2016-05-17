@@ -2,8 +2,7 @@ package my.hw2.addressbook.ru.appmanager;
 
 import my.hw2.addressbook.ru.Model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.ClickAction;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Dmitry on 16.05.2016.
@@ -11,7 +10,7 @@ import org.openqa.selenium.interactions.ClickAction;
 public class ContactHelper extends HelperBase {
 
 
-    public ContactHelper(FirefoxDriver wd) {
+    public ContactHelper(WebDriver wd) {
        super(wd);
     }
 

@@ -1,7 +1,7 @@
 package my.hw2.addressbook.ru.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Dmitry on 16.05.2016.
@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class NavigationHelper extends HelperBase{
 
 
-    public NavigationHelper(FirefoxDriver wd) {
+    public NavigationHelper(WebDriver wd) {
         super(wd);
     }
 
