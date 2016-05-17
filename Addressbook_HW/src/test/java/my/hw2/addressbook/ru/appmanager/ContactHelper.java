@@ -2,7 +2,10 @@ package my.hw2.addressbook.ru.appmanager;
 
 import my.hw2.addressbook.ru.Model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 /**
  * Created by Dmitry on 16.05.2016.
@@ -19,7 +22,7 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("middlename"), contactData.getMiddleName());
         type(By.name("lastname"), contactData.getLastName());
@@ -31,6 +34,13 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("work"), contactData.getWorkPhone());
         type(By.name("fax"), contactData.getFax());
+
+        if(creation){
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
+
     }
 
 
