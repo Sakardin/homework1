@@ -51,7 +51,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact() {
-        click(By.cssSelector("tbody tr.odd td.center:nth-child(1)"));
+        click(By.name("selected[]"));
     }
 
     public void allertAccept() {
@@ -72,5 +72,22 @@ public class ContactHelper extends HelperBase {
 
     public void retuntToMainPage() {
         click(By.xpath("//div/div[4]/div/i/a"));
+    }
+
+    public void gotoHomePage() {
+        click(By.linkText("home"));
+    }
+
+    public void createContact(ContactData data) {
+        initContactCreation();
+        fillContactForm(data, true);
+        submitContactForm();
+        gotoHomePage();
+    }
+
+
+    public boolean isThereAContact() {
+        if (isElementPresent(By.name("selected[]")))return true;
+        else return false;
     }
 }
