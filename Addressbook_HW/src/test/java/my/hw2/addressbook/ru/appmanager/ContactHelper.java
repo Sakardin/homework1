@@ -4,8 +4,12 @@ import my.hw2.addressbook.ru.Model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dmitry on 16.05.2016.
@@ -89,5 +93,19 @@ public class ContactHelper extends HelperBase {
     public boolean isThereAContact() {
         if (isElementPresent(By.name("selected[]")))return true;
         else return false;
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+        for (WebElement element : elements){
+            String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+            ContactData group = new ContactData(id, firstName, null, lastName, null, null, null, null, null, null, null, null, null);
+            contacts.add(group);
+
+        }
+        return contacts;
     }
 }

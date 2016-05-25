@@ -3,6 +3,10 @@ package my.hw2.addressbook.ru.appmanager;
 import my.hw2.addressbook.ru.Model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dmitry on 16.05.2016.
@@ -59,4 +63,16 @@ public class GroupHelper extends HelperBase {
         if (isElementPresent(By.name("selected[]"))) return true;
         else return false;
            }
+
+    public List<GroupData> getGrouplist() {
+        List<GroupData> groups = new ArrayList<GroupData>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for (WebElement element : elements){
+            String name = element.getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            GroupData group = new GroupData(id, name, null, null);
+            groups.add(group);
+        }
+        return  groups;
+    }
 }
