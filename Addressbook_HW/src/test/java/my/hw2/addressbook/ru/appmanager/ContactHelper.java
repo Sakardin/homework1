@@ -1,6 +1,8 @@
 package my.hw2.addressbook.ru.appmanager;
 
 import my.hw2.addressbook.ru.Model.ContactData;
+import my.hw2.addressbook.ru.Model.Contacts;
+import my.hw2.addressbook.ru.Model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
@@ -95,18 +97,22 @@ public class ContactHelper extends HelperBase {
         if (isElementPresent(By.name("selected[]")))return true;
         else return false;
     }
+    private Contacts contactCache = null;
 
-    public List<ContactData> getContactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
+    public Contacts all() {
+        if(contactCache != null){
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements){
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
             ContactData group = new ContactData(id, firstName, null, lastName, null, null, null, null, null, null, null, null, null);
-            contacts.add(group);
+            contactCache.add(group);
 
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 }

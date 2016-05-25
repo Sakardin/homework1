@@ -1,7 +1,6 @@
 package my.hw2.addressbook.ru.tests;
 
 import my.hw2.addressbook.ru.Model.ContactData;
-import my.hw2.addressbook.ru.Model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,7 +11,7 @@ public class ContactCreationTest extends TestBase {
 
 
 
-    @Test
+    @Test(enabled = false)
     public void testContactCreation() {
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().initContactCreation();
@@ -21,7 +20,7 @@ public class ContactCreationTest extends TestBase {
                 "testwork", "testfax", "hometest1");
         app.getContactHelper().fillContactForm(contact,true);
         app.getContactHelper().submitContactForm();
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().gotoHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() + 1);
 

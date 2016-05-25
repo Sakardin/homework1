@@ -1,34 +1,45 @@
 package my.hw2.addressbook.ru.tests;
 
 import my.hw2.addressbook.ru.Model.GroupData;
+import my.hw2.addressbook.ru.Model.Groups;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class GroupCreationTest extends TestBase {
 
     @Test
     public void testGroupCreation() {
 
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupData> before = app.getGroupHelper().getGrouplist();
-        app.getGroupHelper().initGroupCreation();
-        GroupData group = new GroupData("hometest1", "hometest2", "hometest3");
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupCreation();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGrouplist();
-        Assert.assertEquals(after.size(), before.size() + 1);
+        app.goTo().groupPage();
+        Groups before = app.group().all();
+        GroupData group = new GroupData().withName("test2");
+        app.group().create(group);
+        assertThat(app.group().count(), equalTo(before.size() +1 ));
+
+        Groups after = app.group().all();
+        assertThat(after, equalTo(
+                before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
+    }
+
+    @Test
+    public void testBadGroupCreation() {
+        app.goTo().groupPage();
+        Groups before = app.group().all();
+        GroupData group = new GroupData().withName("test2'");
+
+        app.group().create(group);
+        assertThat(app.group().count(), equalTo(before.size()));
+        Groups after = app.group().all();
+        assertThat(after.size(), equalTo(before.size()));
 
 
-        group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-        before.add(group);
-        Comparator<? super GroupData> byID = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byID);
-        after.sort(byID);
-        Assert.assertEquals(before,after);
 
     }
 

@@ -9,18 +9,18 @@ import java.util.List;
 public class GroupDeleteTest extends TestBase {
 
 
-    @Test
+    @Test(enabled = false)
     public void testGroupDelete() {
-        app.getNavigationHelper().gotoGroupPage();
+        app.goTo().groupPage();
         GroupData group = new GroupData("test","test,","rest");
-        if (! app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().createGroup(group);
+        if (! app.group().isThereAGroup()){
+            app.group().createGroup(group);
         }
-        List<GroupData> before = app.getGroupHelper().getGrouplist();
-        app.getGroupHelper().selectGroup(0);
-        app.getGroupHelper().deleteSelectedGroup();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGrouplist();
+        List<GroupData> before = app.group().getGrouplist();
+        app.group().selectGroup(0);
+        app.group().deleteSelectedGroup();
+        app.group().returnToGroupPage();
+        List<GroupData> after = app.group().getGrouplist();
 
         Assert.assertEquals(after.size(), before.size() - 1);
 

@@ -1,6 +1,7 @@
 package my.hw2.addressbook.ru.appmanager;
 
 import my.hw2.addressbook.ru.Model.GroupData;
+import my.hw2.addressbook.ru.Model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,7 +53,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void createGroup(GroupData group) {
+    public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
@@ -65,15 +66,38 @@ public class GroupHelper extends HelperBase {
         else return false;
            }
 
-    public List<GroupData> getGrouplist() {
-        List<GroupData> groups = new ArrayList<GroupData>();
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+
+    }
+
+//    public List<GroupData> getGrouplist() {
+//        List<GroupData> groups = new ArrayList<GroupData>();
+//        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+//        for (WebElement element : elements){
+//            String name = element.getText();
+//            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+//            GroupData group = new GroupData().withId(id).withN name, null, null);
+//            groups.add(group);
+//        }
+//        return  groups;
+//    }
+
+    private Groups groupCache = null;
+
+
+    public Groups all() {
+        if(groupCache != null){
+            return new Groups(groupCache);
+        }
+        groupCache = new Groups();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            GroupData group = new GroupData(id, name, null, null);
-            groups.add(group);
+            groupCache.add(new GroupData().withId(id).withName(name));
         }
-        return  groups;
+
+        return new Groups(groupCache);
     }
 }

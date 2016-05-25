@@ -12,21 +12,21 @@ import java.util.List;
  */
 public class GroupModificationTest extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testGroupModification() {
-        app.getNavigationHelper().gotoGroupPage();
-        if (! app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().createGroup(new GroupData("test","test,","rest"));
+        app.goTo().groupPage();
+        if (! app.group().isThereAGroup()){
+            app.group().createGroup(new GroupData("test","test,","rest"));
         }
-        List<GroupData> before = app.getGroupHelper().getGrouplist();
-        app.getGroupHelper().selectGroup(before.size() - 1);
+        List<GroupData> before = app.group().getGrouplist();
+        app.group().selectGroup(before.size() - 1);
 
-        app.getGroupHelper().initGroupMddigication();
+        app.group().initGroupMddigication();
         GroupData group = new GroupData(before.get(before.size() -1).getId(), "hometest11", "hometest22", "hometest33");
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupModification();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGrouplist();
+        app.group().fillGroupForm(group);
+        app.group().submitGroupModification();
+        app.group().returnToGroupPage();
+        List<GroupData> after = app.group().getGrouplist();
 
         Assert.assertEquals(after.size(), before.size());
 
