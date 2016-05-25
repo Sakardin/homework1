@@ -49,6 +49,7 @@ public class GroupData {
     public String toString() {
         return "GroupData{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -59,15 +60,12 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
-        if (id != groupData.id) return false;
-        return name.equals(groupData.name);
+        return name != null ? name.equals(groupData.name) : groupData.name == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + name.hashCode();
-        return result;
+        return name != null ? name.hashCode() : 0;
     }
 }
