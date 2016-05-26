@@ -2,26 +2,19 @@ package my.hw2.addressbook.ru.Model;
 
 public class ContactData {
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private int id;
-    private final String firstName;
-    private final String middleName;
-    private final String lastName;
-    private final String nickName;
-    private final String title;
-    private final String company;
-    private final String address;
-    private final String homePhone;
-    private final String mobilePhone;
-    private final String workPhone;
-    private final String fax;
-    private String group;
-
-
-
+    private int id = Integer.MAX_VALUE;
+    private  String firstName;
+    private  String middleName;
+    private  String lastName;
+    private  String nickName;
+    private  String title;
+    private  String company;
+    private  String address;
+    private  String homePhone;
+    private  String mobilePhone;
+    private  String workPhone;
+    private  String fax;
+    private  String group;
 
     public ContactData(int id, String firstName, String middleName, String lastName, String nickName,
                        String title, String company, String address, String homePhone,
@@ -110,6 +103,71 @@ public class ContactData {
 
     public String getGroup() {
         return group;
+    }
+
+    public ContactData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ContactData witFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withNickName(String nickName) {
+        this.nickName = nickName;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+
+    public ContactData withFax(String fax) {
+        this.fax = fax;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     @Override
