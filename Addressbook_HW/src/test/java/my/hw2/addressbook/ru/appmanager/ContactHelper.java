@@ -2,15 +2,12 @@ package my.hw2.addressbook.ru.appmanager;
 
 import my.hw2.addressbook.ru.Model.ContactData;
 import my.hw2.addressbook.ru.Model.Contacts;
-import my.hw2.addressbook.ru.Model.Groups;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,7 +48,7 @@ public class ContactHelper extends HelperBase {
 
 
 
-    public void initContactCreation() {
+    public void creation() {
         click(By.linkText("add new"));
 
     }
@@ -86,7 +83,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact(ContactData data) {
-        initContactCreation();
+        creation();
         fillContactForm(data, true);
         submitContactForm();
         gotoHomePage();
@@ -97,6 +94,12 @@ public class ContactHelper extends HelperBase {
         if (isElementPresent(By.name("selected[]")))return true;
         else return false;
     }
+
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+
+    }
+
     private Contacts contactCache = null;
 
     public Contacts all() {
@@ -109,10 +112,29 @@ public class ContactHelper extends HelperBase {
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            ContactData group = new ContactData(id, firstName, null, lastName, null, null, null, null, null, null, null, null, null);
-            contactCache.add(group);
+            ContactData contact = new ContactData().withId(id).witFirstName(firstName).withLastName(lastName);
+            contactCache.add(contact);
 
         }
         return new Contacts(contactCache);
+
+    }
+    public void create(ContactData contact) {
+        fillContactForm(contact,true);
+        submitContactForm();
+        gotoHomePage();
+    }
+
+    public void delete() {
+        selectContact();
+        deleteSelectedContact();
+        allertAccept();
+        gotoHomePage();
+    }
+    public void modify(ContactData contact) {
+        editContact(contact.getId());
+        fillContactForm(contact, false);
+        updateContactForm();
+        retuntToMainPage();
     }
 }
