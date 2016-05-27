@@ -69,6 +69,10 @@ public class ContactHelper extends HelperBase {
         wd.findElements(By.xpath("//img[@title=('Edit')]")).get(index).click();
 //        click(By.xpath("//img[@title=('Edit')]"));
     }
+    public void editContactById(int id) {
+        wd.findElement(By.xpath("//a[@href =('edit.php?id=" +id+ "')]")).click();
+//        click(By.xpath("//img[@title=('Edit')]"));
+    }
 
     public void updateContactForm() {
         click(By.name("update"));
@@ -112,8 +116,7 @@ public class ContactHelper extends HelperBase {
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            ContactData contact = new ContactData().withId(id).witFirstName(firstName).withLastName(lastName);
-            contactCache.add(contact);
+            contactCache.add(new ContactData().withId(id).witFirstName(firstName).withLastName(lastName));
 
         }
         return new Contacts(contactCache);
@@ -122,6 +125,7 @@ public class ContactHelper extends HelperBase {
     public void create(ContactData contact) {
         fillContactForm(contact,true);
         submitContactForm();
+        contactCache = null;
         gotoHomePage();
     }
 
@@ -129,12 +133,14 @@ public class ContactHelper extends HelperBase {
         selectContact();
         deleteSelectedContact();
         allertAccept();
+        contactCache = null;
         gotoHomePage();
     }
     public void modify(ContactData contact) {
-        editContact(contact.getId());
+        editContactById(contact.getId());
         fillContactForm(contact, false);
         updateContactForm();
+        contactCache = null;
         retuntToMainPage();
     }
 }

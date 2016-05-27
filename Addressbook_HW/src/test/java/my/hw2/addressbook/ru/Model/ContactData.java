@@ -137,9 +137,10 @@ public class ContactData {
     public String toString() {
         return "ContactData{" +
                 "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
-
 
     @Override
     public boolean equals(Object o) {
