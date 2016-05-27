@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Dmitry on 27.05.2016.
  */
-public class AddressTest extends TestBase {
+public class ContactAddressTest extends TestBase {
 
     @Test
     public void testAddress() {
