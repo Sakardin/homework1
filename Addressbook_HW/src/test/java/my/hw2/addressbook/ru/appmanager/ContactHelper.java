@@ -53,8 +53,9 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int id) {
+        wd.findElement(By.cssSelector("input[value = '" + id + "']")).click();
+//        click(By.name("selected[]"));
     }
 
     public void allertAccept() {
@@ -70,9 +71,17 @@ public class ContactHelper extends HelperBase {
 //        click(By.xpath("//img[@title=('Edit')]"));
     }
     public void editContactById(int id) {
-        wd.findElement(By.xpath("//a[@href =('edit.php?id=" +id+ "')]")).click();
+        wd.findElement(By.xpath(String.format("//a[@href =('edit.php?id=%s')]", id))).click();
 //        click(By.xpath("//img[@title=('Edit')]"));
     }
+//    public void initContactModificationById(int id){
+//        WebElement chekbox = wd.findElement(By.cssSelector(String.format("input[value='%s']",id)));
+//        WebElement row = chekbox.findElement(By.xpath("./../."));
+//        List<WebElement> cells = row.findElements(By.tagName("td"));
+//        cells.get(7).findElement(By.tagName("a")).click();
+//
+//
+//    }
 
     public void updateContactForm() {
         click(By.name("update"));
@@ -113,9 +122,11 @@ public class ContactHelper extends HelperBase {
         contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements){
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+//            String firstName = cells.get(1).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+//            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             contactCache.add(new ContactData().withId(id).witFirstName(firstName).withLastName(lastName));
 
         }
@@ -129,8 +140,8 @@ public class ContactHelper extends HelperBase {
         gotoHomePage();
     }
 
-    public void delete() {
-        selectContact();
+    public void delete(ContactData contact) {
+        selectContact(contact.getId());
         deleteSelectedContact();
         allertAccept();
         contactCache = null;
