@@ -1,13 +1,10 @@
-package my.hw2.addressbook.ru.tests;
+package my.hw.addressbook.ru.tests;
 
-import my.hw2.addressbook.ru.Model.GroupData;
-import my.hw2.addressbook.ru.Model.Groups;
+import my.hw.addressbook.ru.Model.GroupData;
+import my.hw.addressbook.ru.Model.Groups;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Comparator;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

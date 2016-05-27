@@ -1,12 +1,11 @@
-package my.hw2.addressbook.ru.appmanager;
+package my.hw.addressbook.ru.appmanager;
 
-import my.hw2.addressbook.ru.Model.GroupData;
-import my.hw2.addressbook.ru.Model.Groups;
+import my.hw.addressbook.ru.Model.GroupData;
+import my.hw.addressbook.ru.Model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

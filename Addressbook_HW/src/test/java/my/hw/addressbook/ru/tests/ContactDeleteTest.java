@@ -1,12 +1,9 @@
-package my.hw2.addressbook.ru.tests;
+package my.hw.addressbook.ru.tests;
 
-import my.hw2.addressbook.ru.Model.ContactData;
-import my.hw2.addressbook.ru.Model.Contacts;
-import org.testng.Assert;
+import my.hw.addressbook.ru.Model.ContactData;
+import my.hw.addressbook.ru.Model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

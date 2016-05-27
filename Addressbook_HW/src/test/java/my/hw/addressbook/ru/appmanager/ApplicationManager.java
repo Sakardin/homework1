@@ -1,4 +1,4 @@
-package my.hw2.addressbook.ru.appmanager;
+package my.hw.addressbook.ru.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
