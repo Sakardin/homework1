@@ -3,7 +3,6 @@ package my.hw.addressbook.ru.Model;
 public class ContactData {
 
     private int id = Integer.MAX_VALUE;
-//    private int id ;
     private  String firstName;
     private  String middleName;
     private  String lastName;
