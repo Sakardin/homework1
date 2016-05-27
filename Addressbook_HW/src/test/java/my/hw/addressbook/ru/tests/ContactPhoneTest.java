@@ -3,12 +3,13 @@ package my.hw.addressbook.ru.tests;
 import my.hw.addressbook.ru.Model.ContactData;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.*;
 
-/**
- * Created by user on 5/27/2016.
- */
+
 public class ContactPhoneTest extends TestBase{
 
     @Test
@@ -17,9 +18,19 @@ public class ContactPhoneTest extends TestBase{
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getHomePhone(), equalTo(contactInfoFromEditForm.getHomePhone()));
-        assertThat(contact.getWorkPhone(), equalTo(contactInfoFromEditForm.getWorkPhone()));
-        assertThat(contact.getMobilePhone(), equalTo(contactInfoFromEditForm.getMobilePhone()));
+        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
 
+    }
+
+    private String mergePhones(ContactData contact) {
+        return Arrays.asList(contact.getHomePhone(),contact.getMobilePhone(),contact.getWorkPhone())
+                .stream().filter((s) -> ! s.equals(""))
+                .map(ContactPhoneTest :: cleand)
+                .collect(Collectors.joining("\n"));
+
+    }
+
+    public static String cleand(String phone){
+        return phone.replaceAll("\\s","").replaceAll("[-()]","");
     }
 }

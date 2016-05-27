@@ -16,6 +16,11 @@ public class ContactData {
     private  String workPhone;
     private  String fax;
     private  String group;
+    private  String allPhones;
+
+    public String getAllPhones() {
+        return allPhones;
+    }
 
     public int getId() {
         return id;
@@ -67,6 +72,12 @@ public class ContactData {
 
     public String getGroup() {
         return group;
+    }
+
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
     }
 
     public ContactData withId(int id) {
