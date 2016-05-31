@@ -2,6 +2,8 @@ package my.hw.addressbook.ru.appmanager;
 
 import org.openqa.selenium.*;
 
+import java.io.File;
+
 /**
  * Created by Dmitry on 16.05.2016.
  */
@@ -26,6 +28,12 @@ public class HelperBase {
             }
         }
     }
+    public void attach(By locator, File file) {
+                if( file != null) {
+                wd.findElement(locator).sendKeys(file.getAbsolutePath());
+            }
+        }
+
     public  boolean isAlertPresent() {
         try {
             wd.switchTo().alert();
