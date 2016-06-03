@@ -1,8 +1,12 @@
 package my.hw.addressbook.ru.Model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+@XStreamAlias("groups")
 public class GroupData {
 
-
+    @XStreamOmitField
     private int id  = Integer.MAX_VALUE;
     private  String name;
     private  String header;
