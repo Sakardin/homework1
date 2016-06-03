@@ -3,6 +3,8 @@ package my.hw.addressbook.ru.Generator;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import my.hw.addressbook.ru.Model.GroupData;
 
@@ -49,10 +51,20 @@ public class GroupDataGenerator {
             saveAsCsv(groups, new File(file));
         }else if (format.equals("xml")) {
             getSaveAsXml(groups, new File(file));
+        }else if (format.equals("json")) {
+            getSaveAsJson(groups, new File(file));
         }else {
             System.out.println("Unrecognizes format " + format);
         }
 
+    }
+
+    private void getSaveAsJson(List<GroupData> groups, File file) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(groups);
+        Writer writer = new FileWriter(file);
+        writer.write(json);
+        writer.close();
     }
 
     private void getSaveAsXml(List<GroupData> groups, File file) throws IOException {
