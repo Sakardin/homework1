@@ -2,25 +2,37 @@ package my.hw.addressbook.ru.tests;
 
 import my.hw.addressbook.ru.Model.GroupData;
 import my.hw.addressbook.ru.Model.Groups;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
 
-    @Test
-    public void testGroupCreation() {
+    @DataProvider
+    public Iterator<Object[]> validGroups(){
+        List<Object[]> list = new ArrayList<Object[]>();
+       list.add(new Object[]{new GroupData().withName("ter").withHeader("gfdgfdg").withFooter("fdgdfg")});
+       list.add(new Object[]{new GroupData().withName("ter2").withHeader("gfdgfdg2").withFooter("fdgdfg2")});
+        return list.iterator();
+    }
 
-        app.goTo().groupPage();
-        Groups before = app.group().all();
-        GroupData group = new GroupData().withName("test1");
-        app.group().create(group);
-        assertThat(app.group().count(), equalTo(before.size() +1 ));
+    @Test(dataProvider = "validGroups")
+    public void testGroupCreation(GroupData group) {
+            app.goTo().groupPage();
+            Groups before = app.group().all();
 
-        Groups after = app.group().all();
-        assertThat(after, equalTo(
-                before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+            app.group().create(group);
+            assertThat(app.group().count(), equalTo(before.size() + 1));
+
+            Groups after = app.group().all();
+            assertThat(after, equalTo(
+                    before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
     }
 
