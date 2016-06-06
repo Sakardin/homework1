@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Dmitry on 27.05.2016.
  */
-public class EmailTest extends TestBase {
+public class ContactEmailTest extends TestBase {
 
     @Test
     public void restEmailAddress() {

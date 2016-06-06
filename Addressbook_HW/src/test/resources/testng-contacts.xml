@@ -5,6 +5,11 @@
     <test name="Concacts">
         <classes>
             <class name="my.hw.addressbook.ru.tests.ContactCreationTest"/>
+            <class name="my.hw.addressbook.ru.tests.ContactModificationTest"/>
+            <class name="my.hw.addressbook.ru.tests.ContactAddressTest"/>
+            <class name="my.hw.addressbook.ru.tests.ContactPhoneTest"/>
+            <class name="my.hw.addressbook.ru.tests.ContactEmailTest"/>
+            <class name="my.hw.addressbook.ru.tests.ContactDeleteTest"/>
         </classes>
     </test>
 </suite>
