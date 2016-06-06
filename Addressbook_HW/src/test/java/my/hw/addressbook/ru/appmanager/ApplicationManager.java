@@ -22,9 +22,11 @@ public class ApplicationManager {
     private String browser;
 
 
-    public ApplicationManager(String browser) {
+    public ApplicationManager(String property, String browser) {
 
         this.browser = browser;
+        String target =System.getProperty("target", "local");
+
     }
 
 
