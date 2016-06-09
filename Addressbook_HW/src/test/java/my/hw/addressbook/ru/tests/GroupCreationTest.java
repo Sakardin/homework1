@@ -9,16 +9,17 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
+
+//    Logger logger = LoggerFactory.getLogger(GroupCreationTest.class);
+
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromXML() throws IOException {
@@ -53,6 +54,9 @@ public class GroupCreationTest extends TestBase {
 
     @Test(dataProvider = "validGroupsFromJson")
     public void testGroupCreation(GroupData group) {
+
+//        logger.info("Start test testGroupCreation");
+
             app.goTo().groupPage();
             Groups before = app.group().all();
             app.group().create(group);
